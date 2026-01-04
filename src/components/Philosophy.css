@@ -1,0 +1,135 @@
+.philosophy {
+  background: var(--color-gray-100);
+}
+
+.philosophy__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+/* Left - Beliefs */
+.philosophy__beliefs {
+  padding-right: var(--space-8);
+}
+
+.philosophy__label {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gray-500);
+  margin-bottom: var(--space-4);
+}
+
+.philosophy__title {
+  margin-bottom: var(--space-10);
+}
+
+.philosophy__points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.philosophy__point {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.philosophy__point-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-black);
+}
+
+.philosophy__point-content {
+  flex: 1;
+}
+
+.philosophy__point-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+  color: var(--color-black);
+}
+
+.philosophy__point-desc {
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* Right - Not This */
+.philosophy__not-card {
+  background: var(--color-gray-900);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10);
+  color: var(--color-white);
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-6));
+}
+
+.philosophy__not-title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  margin-bottom: var(--space-8);
+  color: var(--color-gray-300);
+}
+
+.philosophy__not-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.philosophy__not-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-lg);
+  color: var(--color-gray-400);
+}
+
+.philosophy__not-list svg {
+  color: #EF4444;
+  flex-shrink: 0;
+}
+
+.philosophy__not-footer {
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-gray-700);
+}
+
+.philosophy__not-footer p {
+  font-size: var(--text-base);
+  color: var(--color-white);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .philosophy__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .philosophy__beliefs {
+    padding-right: 0;
+  }
+
+  .philosophy__not-card {
+    position: static;
+  }
+}
