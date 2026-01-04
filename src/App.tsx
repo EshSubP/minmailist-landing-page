@@ -1,21 +1,18 @@
-import "./index.css";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { Features } from "./components/Features";
-import { Philosophy } from "./components/Philosophy";
-import { Waitlist } from "./components/Waitlist";
-import { Footer } from "./components/Footer";
+import Hero from "./components/Hero";
+import FeaturesSection from "./components/FeaturesSection";
+import Marquee from "./components/Marquee";
+import PillarsSection from "./components/PillarsSection";
+import ManifestoSection from "./components/ManifestoSection";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <Hero />
-        <Features />
-        <Philosophy />
-        <Waitlist />
-      </main>
+    <div className="min-h-screen bg-brand-light">
+      <Hero />
+      <Marquee />
+      <FeaturesSection />
+      <PillarsSection />
+      <ManifestoSection />
       <Footer />
     </div>
   );
