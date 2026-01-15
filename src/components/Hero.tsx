@@ -36,7 +36,7 @@ export default function Hero() {
     const blurAmount = Math.max(0, 32 * (1 - progress)); // 16px blur -> 0px
     const overlayOpacity = Math.max(0, 0.4 * (1 - progress)); // 0.4 -> 0
     // Zoom continues slightly even after full screen for "alive" feel
-    const imageScale = 1 + (scrollY * 0.0001);
+    const imageScale = 0.8 + (scrollY * 0.0001);
 
     return (
         <section
