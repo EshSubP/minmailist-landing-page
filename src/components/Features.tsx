@@ -45,6 +45,7 @@ const features = [
         color: '#1A1A1A',
         headline: 'Navigate at the speed of thought',
         description: 'Use ⌘K to search, open settings, or switch views instantly. Power users rejoice—keyboard shortcuts for everything.',
+        image: '/command-center.png',
     },
     {
         id: 'gatekeeper',
@@ -294,7 +295,10 @@ export default function Features() {
                             style={{
                                 scrollMarginTop: '12rem',
                                 display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                                gridTemplateColumns:
+                                    index % 2 === 0
+                                        ? 'minmax(0, 1fr) minmax(0, 3fr)'
+                                        : 'minmax(0, 3fr) minmax(0, 1fr)',
                                 gap: '4rem',
                                 alignItems: 'center',
                             }}
@@ -303,7 +307,6 @@ export default function Features() {
                             <div style={{
                                 order: index % 2 === 1 ? 2 : 1,
                                 position: 'relative',
-                                zIndex: 20, // Ensure text sits above the free-floating images
                             }}>
                                 <div
                                     style={{
@@ -353,7 +356,7 @@ export default function Features() {
                                     aspectRatio: '4/3',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    justifyContent: 'center',
+                                    justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end',
                                     position: 'relative',
                                 }}
                             >
@@ -363,15 +366,18 @@ export default function Features() {
                                         src={(feature as any).image}
                                         alt={feature.name}
                                         style={{
-                                            width: '1140px', // Enlarged to cover more space (approx 150% requested)
-                                            maxWidth: 'none',
+                                            width: '1280px', // Enlarged to cover more space (approx 150% requested)
+                                            maxWidth: '1280px',
                                             height: 'auto',
                                             objectFit: 'contain',
-                                            // Shift right for all: Left images move inwards, Right images move outwards
                                             transform: 'rotate(-2deg)',
                                             filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.18))', // Enhanced shadow for depth
                                             zIndex: 10,
-                                            paddingLeft: '10%',
+                                            // Shift outward from center: Right images -> paddingLeft, Left images -> paddingRight
+                                            ...(index % 2 === 0
+                                                ? { paddingRight: '10%' }  // Image on right, shift right
+                                                : { paddingLeft: '10%' } // Image on left, shift left
+                                            ),
                                         }}
                                     />
                                 ) : (
