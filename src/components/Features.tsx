@@ -15,8 +15,9 @@ const features = [
             </svg>
         ),
         color: '#4A90D9',
-        headline: 'Emails organized, automatically',
-        description: 'Emails are automatically bundled into categories like Updates, Finance, and Promos, keeping your focus on what matters. No manual sorting required.',
+        headline: 'Inbox designed for humans',
+        description: 'Use Splits to separate emails and Bundles to group related inboxes together. Pin what matters, stash what can wait, and star emails just like in Gmail.',
+        image: '/splits-bundles-preview.png',
     },
     {
         id: 'kanban',
@@ -31,6 +32,7 @@ const features = [
         color: '#8B5CF6',
         headline: 'Your inbox, now a visual workflow',
         description: 'Visualize your tasks. Drag and drop emails into columns like "To Do", "In Progress", and "Done" without leaving Gmail. Turn emails into action items.',
+        image: '/workflows.png',
     },
     {
         id: 'command',
@@ -128,7 +130,7 @@ export default function Features() {
                 });
             },
             {
-                rootMargin: '-20% 0px -60% 0px', // Trigger when section is near top but not too early
+                rootMargin: '-20% 0px -60% 0px',
                 threshold: 0,
             }
         );
@@ -144,7 +146,6 @@ export default function Features() {
         const feature = features[index];
         const element = document.getElementById(feature.id);
         if (element) {
-            // Calculate offset for sticky header + sticky tabs
             const headerOffset = 180;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -162,11 +163,25 @@ export default function Features() {
             id="features"
             style={{
                 position: 'relative',
-                background: 'var(--color-bg-secondary)',
-                // No padding bottom here, as last item has padding
+                background: '#F9F3EC', // Warm beige background
+                // Note: No overflow:hidden - it breaks sticky positioning
             }}
         >
-            <div className="container" style={{ paddingBottom: '6rem' }}>
+            {/* Grid Pattern Background - Matching Hero */}
+            <div
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                                      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px)`,
+                    backgroundSize: '40px 40px',
+                    pointerEvents: 'none',
+                    overflow: 'hidden', // Moved overflow here instead
+                }}
+            />
+
+            <div className="container" style={{ position: 'relative', zIndex: 1, paddingBottom: '6rem' }}>
                 {/* Section Header */}
                 <div style={{ textAlign: 'center', paddingTop: '6rem', marginBottom: '3rem' }}>
                     <div className="label-caps" style={{ marginBottom: '1rem' }}>
@@ -203,16 +218,16 @@ export default function Features() {
                     </h2>
                 </div>
 
-                {/* Sticky Tabs */}
+                {/* Sticky Tabs - With original color scheme */}
                 <div
                     style={{
                         position: 'sticky',
-                        top: '5rem', // Below main header
+                        top: '5rem',
                         zIndex: 90,
-                        background: 'rgba(250, 250, 250, 0.95)',
+                        background: 'rgba(249, 243, 236, 0.85)', // Lighter glass overlay
                         backdropFilter: 'blur(12px)',
                         padding: '1rem 0',
-                        margin: '0 -100vw', // Full width background trick
+                        margin: '0 -100vw',
                         paddingLeft: '100vw',
                         paddingRight: '100vw',
                         borderBottom: '1px solid var(--color-border-light)',
@@ -227,8 +242,8 @@ export default function Features() {
                             padding: '0.25rem',
                             maxWidth: '100%',
                             WebkitOverflowScrolling: 'touch',
-                            scrollbarWidth: 'none', // Hide scrollbar Firefox
-                            msOverflowStyle: 'none', // IE/Edge
+                            scrollbarWidth: 'none',
+                            msOverflowStyle: 'none',
                         }}
                         className="hide-scrollbar"
                     >
@@ -277,15 +292,19 @@ export default function Features() {
                             id={feature.id}
                             ref={(el) => { observerRefs.current[index] = el; }}
                             style={{
-                                scrollMarginTop: '12rem', // Ensure scroll lands correctly
+                                scrollMarginTop: '12rem',
                                 display: 'grid',
                                 gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
                                 gap: '4rem',
                                 alignItems: 'center',
                             }}
                         >
-                            {/* Text Side - Alternate visual rhythm could be good, but consistent is cleaner for skimmers */}
-                            <div style={{ order: index % 2 === 1 ? 2 : 1 }}>
+                            {/* Text Side */}
+                            <div style={{
+                                order: index % 2 === 1 ? 2 : 1,
+                                position: 'relative',
+                                zIndex: 20, // Ensure text sits above the free-floating images
+                            }}>
                                 <div
                                     style={{
                                         display: 'inline-flex',
@@ -327,62 +346,62 @@ export default function Features() {
                                 </div>
                             </div>
 
-                            {/* Visual Side */}
+                            {/* Visual Side - Free Floating Image */}
                             <div
                                 style={{
                                     order: index % 2 === 1 ? 1 : 2,
                                     aspectRatio: '4/3',
-                                    background: `linear-gradient(135deg, ${feature.color}10 0%, ${feature.color}05 100%)`,
-                                    borderRadius: 'var(--radius-2xl)',
-                                    border: '1px solid var(--color-border-light)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     position: 'relative',
-                                    overflow: 'hidden',
                                 }}
                             >
-                                {/* Decorative BG Icon */}
-                                <div style={{
-                                    color: feature.color,
-                                    opacity: 0.1,
-                                    transform: 'scale(8) rotate(-15deg)',
-                                    position: 'absolute',
-                                }}>
-                                    {feature.icon}
-                                </div>
-
-                                {/* Placeholder UI Card */}
-                                <div
-                                    style={{
-                                        width: '80%',
-                                        height: '70%',
-                                        background: 'var(--color-bg-primary)',
-                                        borderRadius: 'var(--radius-xl)',
-                                        boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)',
-                                        border: '1px solid var(--color-border-light)',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        padding: '2rem',
-                                        position: 'relative',
-                                        zIndex: 10,
-                                    }}
-                                >
-                                    <div style={{
-                                        padding: '1rem',
-                                        background: `${feature.color}15`,
-                                        borderRadius: 'var(--radius-xl)',
-                                        color: feature.color,
-                                        marginBottom: '1rem',
-                                    }}>
-                                        {React.cloneElement(feature.icon as any, { width: 32, height: 32 })}
+                                {(feature as any).image ? (
+                                    // Free-floating image with drop shadow
+                                    <img
+                                        src={(feature as any).image}
+                                        alt={feature.name}
+                                        style={{
+                                            width: '1140px', // Enlarged to cover more space (approx 150% requested)
+                                            maxWidth: 'none',
+                                            height: 'auto',
+                                            objectFit: 'contain',
+                                            // Shift right for all: Left images move inwards, Right images move outwards
+                                            transform: 'rotate(-2deg)',
+                                            filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.18))', // Enhanced shadow for depth
+                                            zIndex: 10,
+                                            paddingLeft: '10%',
+                                        }}
+                                    />
+                                ) : (
+                                    // Simple placeholder with just the icon
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            gap: '1rem',
+                                        }}
+                                    >
+                                        <div style={{
+                                            padding: '2rem',
+                                            background: `${feature.color}15`,
+                                            borderRadius: 'var(--radius-2xl)',
+                                            color: feature.color,
+                                        }}>
+                                            {React.cloneElement(feature.icon as any, { width: 48, height: 48 })}
+                                        </div>
+                                        <div style={{
+                                            color: 'var(--color-text-tertiary)',
+                                            fontSize: '0.875rem',
+                                            fontStyle: 'italic',
+                                        }}>
+                                            Preview coming soon
+                                        </div>
                                     </div>
-                                    <div style={{ color: 'var(--color-text-tertiary)', fontSize: '0.875rem' }}>
-                                        Interactive Preview
-                                    </div>
-                                </div>
+                                )}
                             </div>
                         </div>
                     ))}
