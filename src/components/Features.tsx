@@ -5,6 +5,20 @@ import React, { useState, useEffect, useRef } from 'react';
 // Feature data
 const features = [
     {
+        id: 'gmail-overlay',
+        name: 'Gmail Overlay',
+        icon: (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M22 7l-10 7L2 7" />
+            </svg>
+        ),
+        color: '#EA4335',
+        headline: 'Works right inside Gmail',
+        description: 'Minmailist is a seamless overlay on top of Gmail—no migration, no new apps to learn. Keep your existing setup while enjoying a better experience. A standalone client is on our roadmap.',
+        image: '/gmail-overlay.png',
+    },
+    {
         id: 'smart-inbox',
         name: 'Smart Inbox',
         icon: (
@@ -78,15 +92,16 @@ const features = [
     },
     {
         id: 'autolabel',
-        name: 'Autolabelling',
+        name: 'AI Powered Inbox',
         icon: (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <path d="M10 2C10 2 12.5 9.5 18 13C12.5 16.5 10 24 10 24C10 24 7.5 16.5 2 13C7.5 9.5 10 2 10 2Z" />
+                <path d="M19 2C19 2 20 5 23 6C20 7 19 10 19 10C19 10 18 7 15 6C18 5 19 2 19 2Z" />
             </svg>
         ),
-        color: '#F59E0B',
-        headline: 'AI that understands your mail',
-        description: 'Intelligent AI automatically tags and sorts incoming mail based on context, sender, and priority. Your inbox learns and adapts to you.',
+        color: '#8B5CF6',
+        headline: 'Smart Labels and Summaries',
+        description: 'Intelligent AI automatically tags incoming mail based on simple rules. Understand Your Mail with AI Summaries',
         image: '/autolabels.png',
     },
     {
@@ -194,10 +209,10 @@ export default function Features() {
                         Features
                     </div>
                     <h2 className="headline-lg">
-                        Everything you need for
+                        Everything you need for a
                         <br />
                         <span style={{ position: 'relative', display: 'inline-block' }}>
-                            <span style={{ fontStyle: 'italic', position: 'relative', zIndex: 1 }}>inbox zen</span>
+                            <span style={{ fontStyle: 'italic', position: 'relative', zIndex: 1 }}>relaxing inbox</span>
                             <svg
                                 width="120%"
                                 height="20"
@@ -222,6 +237,89 @@ export default function Features() {
                             </svg>
                         </span>
                     </h2>
+
+                    <div style={{
+                        position: 'relative',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '1.5rem 3rem',
+                        marginTop: '1rem',
+                        maxWidth: 'fit-content',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                    }}>
+                        {/* Rough Brush Circle SVG */}
+                        <svg
+                            viewBox="0 0 300 100"
+                            preserveAspectRatio="none"
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                width: '100%',
+                                height: '100%',
+                                zIndex: 0,
+                                overflow: 'visible',
+                                pointerEvents: 'none',
+                                color: 'var(--color-text-secondary)',
+                                opacity: 0.4,
+                                transform: 'rotate(-1deg)',
+                            }}
+                        >
+                            {/* A hand-drawn looking oval loop */}
+                            <path
+                                d="M20,50 C20,25 80,10 150,12 C220,14 285,30 280,55 C275,80 200,88 140,86 C80,84 25,75 20,50 M30,48 C50,45 100,20 200,45"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+
+                        <div style={{
+                            position: 'relative',
+                            zIndex: 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.75rem',
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: '24px',
+                                height: '24px',
+                                background: '#8B8B99', // Purple-greyish
+                                borderRadius: '50%',
+                                color: 'white',
+                                boxShadow: '0 2px 4px rgba(139, 139, 153, 0.2)',
+                            }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            </div>
+                            <div style={{ textAlign: 'left' }}>
+                                <div style={{
+                                    fontFamily: 'var(--font-sans)',
+                                    fontSize: '0.875rem',
+                                    fontWeight: 500,
+                                    color: 'var(--color-text-primary)',
+                                    lineHeight: 1.2
+                                }}>
+                                    Privacy Protected
+                                </div>
+                                <div style={{
+                                    fontFamily: 'var(--font-sans)',
+                                    fontSize: '0.75rem',
+                                    color: 'var(--color-text-tertiary)',
+                                    lineHeight: 1.2
+                                }}>
+                                    No email storage • CASA Accreditation in progress
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Sticky Tabs - With original color scheme */}
@@ -337,21 +435,6 @@ export default function Features() {
                                 <p className="body-md" style={{ marginBottom: '1.5rem', maxWidth: '480px' }}>
                                     {feature.description}
                                 </p>
-
-                                <div style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    color: 'var(--color-text-primary)',
-                                    fontWeight: 500,
-                                    fontSize: '0.9375rem',
-                                    cursor: 'pointer',
-                                }}>
-                                    Learn more
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </div>
                             </div>
 
                             {/* Visual Side - Free Floating Image */}
