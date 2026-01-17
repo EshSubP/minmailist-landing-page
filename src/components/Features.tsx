@@ -135,7 +135,7 @@ const features = [
 ];
 
 export default function Features() {
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(-1);
     const observerRefs = useRef<(HTMLElement | null)[]>([]);
 
     useEffect(() => {
@@ -175,7 +175,6 @@ export default function Features() {
                 top: offsetPosition,
                 behavior: 'smooth'
             });
-            setActiveTab(index);
         }
     };
 
@@ -341,7 +340,6 @@ export default function Features() {
                     <div
                         style={{
                             display: 'flex',
-                            gap: '0.5rem',
                             overflowX: 'auto',
                             padding: '0.25rem',
                             maxWidth: '100%',
@@ -359,7 +357,7 @@ export default function Features() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '0.5rem',
-                                    padding: '0.625rem 1rem',
+                                    padding: '0.5rem 0.75rem',
                                     borderRadius: '4px',
                                     border: 'none',
                                     background: activeTab === index
