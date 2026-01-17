@@ -59,6 +59,7 @@ const features = [
         color: '#EF4444',
         headline: 'Block the noise before it arrives',
         description: 'Block unwanted senders instantly. Screen first-time emailers before they ever reach your inbox. You control who gets through.',
+        image: '/sender-view.png',
     },
     {
         id: 'feed',
@@ -73,6 +74,7 @@ const features = [
         color: '#14B8A6',
         headline: 'Newsletters as a social feed',
         description: 'Read newsletters and updates like a social feed. Skim through content without opening dozens of tabs. The modern way to consume email content.',
+        image: '/feed-view.png',
     },
     {
         id: 'autolabel',
@@ -85,6 +87,7 @@ const features = [
         color: '#F59E0B',
         headline: 'AI that understands your mail',
         description: 'Intelligent AI automatically tags and sorts incoming mail based on context, sender, and priority. Your inbox learns and adapts to you.',
+        image: '/autolabels.png',
     },
     {
         id: 'zen-home',
@@ -99,6 +102,7 @@ const features = [
         color: '#22C55E',
         headline: 'Start with a blank slate',
         description: 'The Zen Home dashboard shows you only what needs attention now. No clutter, no distraction—just clarity and focus.',
+        image: '/zen-home.png',
     },
     {
         id: 'collections',
@@ -111,6 +115,7 @@ const features = [
         color: '#EAB308',
         headline: 'Starred items, beautifully organized',
         description: 'Organize your starred items into custom collections for better retrieval later. No more endless scrolling through stars.',
+        image: '/star-collection.png',
     },
 ];
 
