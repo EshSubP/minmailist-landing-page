@@ -155,20 +155,14 @@ export default function Hero() {
                             style={{
                                 marginBottom: '2rem',
                                 fontSize: 'clamp(3rem, 8vw, 5.5rem)',
-                                fontWeight: 600,
+                                fontFamily: 'var(--font-serif)',
+                                fontWeight: 400,
                                 lineHeight: 1.05,
                                 letterSpacing: '-0.03em',
                                 color: 'var(--color-text-primary)',
                             }}
                         >
-                            The Interface for<br />
-                            <span style={{
-                                fontStyle: 'italic',
-                                fontFamily: 'var(--font-serif)',
-                                fontWeight: 400,
-                            }}>
-                                Deep Work.
-                            </span>
+                            Your Inbox, but Calmer
                         </h1>
 
                         {/* Subheadline - Prominent */}
@@ -182,7 +176,7 @@ export default function Hero() {
                                 fontWeight: 500,
                             }}
                         >
-                            Your inbox, but calmer.
+                            The Interface for Deep Work.
                         </p>
 
                         {/* Supporting Copy */}

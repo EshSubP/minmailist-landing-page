@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import ZenLogo from './ZenLogo';
+
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +41,7 @@ export default function Header() {
             <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 {/* Logo */}
                 <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit' }}>
-                    <ZenLogo size={36} />
+                    <img src="/minmailist-logo.svg" alt="Minmailist Logo" width={36} height={36} />
                     <span style={{
                         fontFamily: 'var(--font-serif)',
                         fontSize: '1.5rem',

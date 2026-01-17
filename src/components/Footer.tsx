@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ZenLogo from './ZenLogo';
+
 
 export default function Footer() {
     const footerLinks = {
@@ -34,6 +34,37 @@ export default function Footer() {
             }}
         >
             <div className="container">
+                {/* Waitlist CTA Section */}
+                <div
+                    style={{
+                        textAlign: 'center',
+                        paddingBottom: '4rem',
+                        marginBottom: '3rem',
+                        borderBottom: '1px solid var(--color-border-light)',
+                    }}
+                >
+                    <h2
+                        style={{
+                            fontFamily: 'var(--font-serif)',
+                            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+                            fontWeight: 400,
+                            lineHeight: 1.2,
+                            letterSpacing: '-0.02em',
+                            color: 'var(--color-text-primary)',
+                            marginBottom: '1.5rem',
+                        }}
+                    >
+                        Transform your Gmail with our chrome extension
+                    </h2>
+                    <a
+                        href="#waitlist"
+                        className="btn btn-primary"
+                        style={{ padding: '1rem 2rem', fontSize: '1rem' }}
+                    >
+                        Join the Waitlist
+                    </a>
+                </div>
+
                 {/* Main Footer Content */}
                 <div
                     style={{
@@ -56,7 +87,7 @@ export default function Footer() {
                                 marginBottom: '1rem',
                             }}
                         >
-                            <ZenLogo size={32} />
+                            <img src="/minmailist-logo.svg" alt="Minmailist Logo" width={32} height={32} />
                             <span style={{
                                 fontFamily: 'var(--font-serif)',
                                 fontSize: '1.25rem',
