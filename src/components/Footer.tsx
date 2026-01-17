@@ -54,7 +54,7 @@ export default function Footer() {
                             marginBottom: '1.5rem',
                         }}
                     >
-                        Transform your Gmail with our chrome extension
+                        Transform Gmail with Minmailist
                     </h2>
                     <a
                         href="#waitlist"
