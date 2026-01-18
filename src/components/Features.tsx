@@ -284,7 +284,7 @@ export default function Features() {
             </div>
 
             {/* Sticky Tabs - Naturally full width now, no hacks needed */}
-            <div className="sticky top-20 z-40 mb-16 w-full">
+            <div className="sticky md:top-20 top-18 z-40 mb-16 w-full">
                 <div className=" bg-[rgba(249,243,236,0.85)] backdrop-blur-md py-4 border-b border-[var(--color-border-light)]">
                     <div className="container">
                         <div
