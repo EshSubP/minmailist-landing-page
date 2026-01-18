@@ -163,6 +163,31 @@ export default function Features() {
         return () => observer.disconnect();
     }, []);
 
+    // Scroll active tab into view
+    const tabsContainerRef = useRef<HTMLDivElement>(null);
+    const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    useEffect(() => {
+        if (activeTab !== -1 && tabsContainerRef.current && tabRefs.current[activeTab]) {
+            const container = tabsContainerRef.current;
+            const activeTabElement = tabRefs.current[activeTab];
+
+            if (activeTabElement) {
+                const containerWidth = container.offsetWidth;
+                const tabLeft = activeTabElement.offsetLeft;
+                const tabWidth = activeTabElement.offsetWidth;
+
+                // Center the active tab
+                const scrollLeft = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+
+                container.scrollTo({
+                    left: scrollLeft,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [activeTab]);
+
     const scrollToFeature = (index: number) => {
         const feature = features[index];
         const element = document.getElementById(feature.id);
@@ -181,51 +206,35 @@ export default function Features() {
     return (
         <section
             id="features"
-            style={{
-                position: 'relative',
-                background: '#F9F3EC', // Warm beige background
-                // Note: No overflow:hidden - it breaks sticky positioning
-            }}
+            className="relative bg-[#F9F3EC]"
         >
             {/* Grid Pattern Background - Matching Hero */}
             <div
+                className="absolute inset-0 z-0 pointer-events-none aria-hidden"
                 style={{
-                    position: 'absolute',
-                    inset: 0,
-                    zIndex: 0,
                     backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
                                       linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px)`,
                     backgroundSize: '40px 40px',
-                    pointerEvents: 'none',
-                    overflow: 'hidden', // Moved overflow here instead
                 }}
             />
 
-            <div className="container" style={{ position: 'relative', zIndex: 1, paddingBottom: '6rem' }}>
-                {/* Section Header */}
-                <div style={{ textAlign: 'center', paddingTop: '6rem', marginBottom: '3rem' }}>
-                    <div className="label-caps" style={{ marginBottom: '1rem' }}>
+            {/* Section Header */}
+            <div className="container relative z-10">
+                <div className="text-center pt-24 mb-12">
+                    <div className="label-caps mb-4">
                         Features
                     </div>
                     <h2 className="headline-lg">
                         Everything you need for a
                         <br />
-                        <span style={{ position: 'relative', display: 'inline-block' }}>
-                            <span style={{ fontStyle: 'italic', position: 'relative', zIndex: 1 }}>relaxing inbox</span>
+                        <span className="relative inline-block">
+                            <span className="italic relative z-10">relaxing inbox</span>
                             <svg
                                 width="120%"
                                 height="20"
                                 viewBox="0 0 100 20"
                                 preserveAspectRatio="none"
-                                style={{
-                                    position: 'absolute',
-                                    bottom: -2,
-                                    left: '-10%',
-                                    zIndex: 0,
-                                    pointerEvents: 'none',
-                                    stroke: 'var(--color-accent-warm)',
-                                    opacity: 0.6
-                                }}
+                                className="absolute -bottom-0.5 -left-[10%] z-0 pointer-events-none stroke-[var(--color-accent-warm)] opacity-60"
                             >
                                 <path
                                     d="M5 12C25 5 75 5 95 12"
@@ -237,33 +246,12 @@ export default function Features() {
                         </span>
                     </h2>
 
-                    <div style={{
-                        position: 'relative',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '1.5rem 3rem',
-                        marginTop: '1rem',
-                        maxWidth: 'fit-content',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                    }}>
+                    <div className="relative inline-flex items-center justify-center py-6 px-12 mt-4 max-w-fit mx-auto">
                         {/* Rough Brush Circle SVG */}
                         <svg
                             viewBox="0 0 300 100"
                             preserveAspectRatio="none"
-                            style={{
-                                position: 'absolute',
-                                inset: 0,
-                                width: '100%',
-                                height: '100%',
-                                zIndex: 0,
-                                overflow: 'visible',
-                                pointerEvents: 'none',
-                                color: 'var(--color-text-secondary)',
-                                opacity: 0.4,
-                                transform: 'rotate(-1deg)',
-                            }}
+                            className="absolute inset-0 w-full h-full z-0 overflow-visible pointer-events-none text-[var(--color-text-secondary)] opacity-40 -rotate-1"
                         >
                             {/* A hand-drawn looking oval loop */}
                             <path
@@ -276,228 +264,141 @@ export default function Features() {
                             />
                         </svg>
 
-                        <div style={{
-                            position: 'relative',
-                            zIndex: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.75rem',
-                        }}>
-                            <div style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                width: '24px',
-                                height: '24px',
-                                background: '#8B8B99', // Purple-greyish
-                                borderRadius: '50%',
-                                color: 'white',
-                                boxShadow: '0 2px 4px rgba(139, 139, 153, 0.2)',
-                            }}>
+                        <div className="relative z-10 flex items-center gap-3">
+                            <div className="flex items-center justify-center w-6 h-6 bg-[#8B8B99] rounded-full text-white shadow-[0_2px_4px_rgba(139,139,153,0.2)]">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                 </svg>
                             </div>
-                            <div style={{ textAlign: 'left' }}>
-                                <div style={{
-                                    fontFamily: 'var(--font-sans)',
-                                    fontSize: '0.875rem',
-                                    fontWeight: 500,
-                                    color: 'var(--color-text-primary)',
-                                    lineHeight: 1.2
-                                }}>
+                            <div className="text-left">
+                                <div className="font-sans text-sm font-medium text-[var(--color-text-primary)] leading-tight">
                                     Privacy Protected
                                 </div>
-                                <div style={{
-                                    fontFamily: 'var(--font-sans)',
-                                    fontSize: '0.75rem',
-                                    color: 'var(--color-text-tertiary)',
-                                    lineHeight: 1.2
-                                }}>
+                                <div className="font-sans text-xs text-[var(--color-text-tertiary)] leading-tight">
                                     No email storage • CASA Accreditation in progress
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {/* Sticky Tabs - With original color scheme */}
-                <div
-                    style={{
-                        position: 'sticky',
-                        top: '5rem',
-                        zIndex: 90,
-                        background: 'rgba(249, 243, 236, 0.85)', // Lighter glass overlay
-                        backdropFilter: 'blur(12px)',
-                        padding: '1rem 0',
-                        margin: '0 -100vw',
-                        paddingLeft: '100vw',
-                        paddingRight: '100vw',
-                        borderBottom: '1px solid var(--color-border-light)',
-                        marginBottom: '4rem',
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'flex',
-                            overflowX: 'auto',
-                            padding: '0.25rem',
-                            maxWidth: '100%',
-                            WebkitOverflowScrolling: 'touch',
-                            scrollbarWidth: 'none',
-                            msOverflowStyle: 'none',
-                        }}
-                        className="hide-scrollbar"
-                    >
-                        {features.map((feature, index) => (
-                            <button
-                                key={feature.id}
-                                onClick={() => scrollToFeature(index)}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                    padding: '0.5rem 0.75rem',
-                                    borderRadius: '4px',
-                                    border: 'none',
-                                    background: activeTab === index
-                                        ? `repeating-linear-gradient(
+            {/* Sticky Tabs - Naturally full width now, no hacks needed */}
+            <div className="sticky top-20 z-40 mb-16 w-full">
+                <div className=" bg-[rgba(249,243,236,0.85)] backdrop-blur-md py-4 border-b border-[var(--color-border-light)]">
+                    <div className="container">
+                        <div
+                            ref={tabsContainerRef}
+                            className="flex overflow-x-auto p-1 hide-scrollbar relative"
+                        >
+                            {features.map((feature, index) => (
+                                <button
+                                    key={feature.id}
+                                    ref={(el) => { tabRefs.current[index] = el; }}
+                                    onClick={() => scrollToFeature(index)}
+                                    className={`
+                                    flex items-center gap-2 py-2 px-3 rounded border-none cursor-pointer transition-all duration-200 whitespace-nowrap text-sm
+                                    ${activeTab === index
+                                            ? 'font-medium opacity-100 text-[var(--color-text-tertiary)]'
+                                            : 'font-normal opacity-70 text-[var(--color-text-tertiary)] hover:bg-black/5'
+                                        }
+                                `}
+                                    style={{
+                                        background: activeTab === index
+                                            ? `repeating-linear-gradient(
                                             -45deg,
                                             #1a1a1a,
                                             transparent 1px,
                                             transparent 16px
                                           )`
-                                        : 'transparent',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    whiteSpace: 'nowrap',
-                                    color: 'var(--color-text-tertiary)',
-                                    fontWeight: activeTab === index ? 500 : 400,
-                                    fontSize: '0.875rem',
-                                    opacity: activeTab === index ? 1 : 0.7,
-                                }}
-                            >
-                                <span style={{ color: feature.color, display: 'flex' }}>
-                                    {React.cloneElement(feature.icon as any, { width: 16, height: 16 })}
-                                </span>
-                                <span>{feature.name}</span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Stacked Features List */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
-                    {features.map((feature, index) => (
-                        <div
-                            key={feature.id}
-                            id={feature.id}
-                            ref={(el) => { observerRefs.current[index] = el; }}
-                            style={{
-                                scrollMarginTop: '12rem',
-                                display: 'grid',
-                                gridTemplateColumns:
-                                    index % 2 === 0
-                                        ? 'minmax(0, 1fr) minmax(0, 3fr)'
-                                        : 'minmax(0, 3fr) minmax(0, 1fr)',
-                                gap: '4rem',
-                                alignItems: 'center',
-                            }}
-                        >
-                            {/* Text Side */}
-                            <div style={{
-                                order: index % 2 === 1 ? 2 : 1,
-                                position: 'relative',
-                            }}>
-                                <div
-                                    style={{
-                                        display: 'inline-flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem',
-                                        marginBottom: '1.5rem',
-                                        padding: '0.5rem 1rem',
-                                        background: `${feature.color}15`,
-                                        borderRadius: 'var(--radius-full)',
+                                            : 'transparent'
                                     }}
                                 >
-                                    <span style={{ color: feature.color }}>{feature.icon}</span>
-                                    <span style={{ fontSize: '0.875rem', fontWeight: 500, color: feature.color }}>
-                                        {feature.name}
+                                    <span style={{ color: feature.color, display: 'flex' }}>
+                                        {React.cloneElement(feature.icon as any, { width: 16, height: 16 })}
                                     </span>
-                                </div>
+                                    <span>{feature.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                <h3 className="headline-md" style={{ marginBottom: '1rem' }}>
-                                    {feature.headline}
-                                </h3>
-
-                                <p className="body-md" style={{ marginBottom: '1.5rem', maxWidth: '480px' }}>
-                                    {feature.description}
-                                </p>
-                            </div>
-
-                            {/* Visual Side - Free Floating Image */}
+            {/* Stacked Features List */}
+            <div className="container relative z-10 pb-24 flex flex-col gap-24 md:gap-32">
+                {features.map((feature, index) => (
+                    <div
+                        key={feature.id}
+                        id={feature.id}
+                        ref={(el) => { observerRefs.current[index] = el; }}
+                        className={`
+                            grid gap-4 md:gap-16 items-center scroll-mt-24
+                            grid-cols-1 ${index % 2 === 0 ? 'md:grid-cols-[minmax(0,_1fr)_minmax(0,_3fr)]' :
+                                'md:grid-cols-[minmax(0,_3fr)_minmax(0,_1fr)]'}
+                        `}
+                    >
+                        {/* Text Side - Always First on Mobile */}
+                        <div className={`relative ${index % 2 === 1 ? 'md:order-2' : 'md:order-1'}`}>
                             <div
+                                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full"
                                 style={{
-                                    order: index % 2 === 1 ? 1 : 2,
-                                    aspectRatio: '4/3',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end',
-                                    position: 'relative',
+                                    backgroundColor: `${feature.color}15`,
                                 }}
                             >
-                                {(feature as any).image ? (
-                                    // Free-floating image with drop shadow
-                                    <img
-                                        src={(feature as any).image}
-                                        alt={feature.name}
-                                        style={{
-                                            width: '1280px', // Enlarged to cover more space (approx 150% requested)
-                                            maxWidth: '1280px',
-                                            height: 'auto',
-                                            objectFit: 'contain',
-                                            transform: 'rotate(-2deg)',
-                                            filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.18))', // Enhanced shadow for depth
-                                            zIndex: 10,
-                                            // Shift outward from center: Right images -> paddingLeft, Left images -> paddingRight
-                                            ...(index % 2 === 0
-                                                ? { paddingRight: '10%' }  // Image on right, shift right
-                                                : { paddingLeft: '10%' } // Image on left, shift left
-                                            ),
-                                        }}
-                                    />
-                                ) : (
-                                    // Simple placeholder with just the icon
+                                <span style={{ color: feature.color }}>{feature.icon}</span>
+                                <span className="text-sm font-medium" style={{ color: feature.color }}>
+                                    {feature.name}
+                                </span>
+                            </div>
+
+                            <h3 className="headline-md mb-4">
+                                {feature.headline}
+                            </h3>
+
+                            <p className="body-md mb-6 max-w-[480px]">
+                                {feature.description}
+                            </p>
+                        </div>
+
+                        {/* Visual Side - Free Floating Image */}
+                        <div
+                            className={`
+                                relative aspect-[4/3] flex items-center md:mt-8 mt-0
+                                ${index % 2 === 1 ? 'md:order-1 md:justify-end' : 'md:order-2 md:justify-start'}
+                            `}
+                        >
+                            {(feature as any).image ? (
+                                // Free-floating image with drop shadow
+                                <img
+                                    src={(feature as any).image}
+                                    alt={feature.name}
+                                    className={`
+                                        w-full md:w-[1280px] md:max-w-[1280px] h-auto object-contain 
+                                        -rotate-2 drop-shadow-[0_30px_60px_rgba(0,0,0,0.18)] z-10
+                                        ${index % 2 === 0 ? 'md:pr-[10%]' : 'md:pl-[10%]'}
+                                    `}
+                                />
+                            ) : (
+                                // Simple placeholder with just the icon
+                                <div className="flex flex-col items-center justify-center gap-4 w-full">
                                     <div
+                                        className="p-8 rounded-2xl"
                                         style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            gap: '1rem',
+                                            backgroundColor: `${feature.color}15`,
+                                            color: feature.color,
                                         }}
                                     >
-                                        <div style={{
-                                            padding: '2rem',
-                                            background: `${feature.color}15`,
-                                            borderRadius: 'var(--radius-2xl)',
-                                            color: feature.color,
-                                        }}>
-                                            {React.cloneElement(feature.icon as any, { width: 48, height: 48 })}
-                                        </div>
-                                        <div style={{
-                                            color: 'var(--color-text-tertiary)',
-                                            fontSize: '0.875rem',
-                                            fontStyle: 'italic',
-                                        }}>
-                                            Preview coming soon
-                                        </div>
+                                        {React.cloneElement(feature.icon as any, { width: 48, height: 48 })}
                                     </div>
-                                )}
-                            </div>
+                                    <div className="text-[var(--color-text-tertiary)] text-sm italic">
+                                        Preview coming soon
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
 
             <style jsx>{`
