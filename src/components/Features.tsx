@@ -206,7 +206,7 @@ export default function Features() {
     return (
         <section
             id="features"
-            className="relative bg-[#F9F3EC]"
+            className="relative bg-gradient-to-b from-[#FCFAF7] to-[#F9F3EC]"
         >
             {/* Grid Pattern Background - Matching Hero */}
             <div

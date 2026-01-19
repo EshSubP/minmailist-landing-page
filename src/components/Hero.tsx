@@ -50,16 +50,18 @@ export default function Hero() {
             }}
         >
             {/* Sticky Viewport: Pins the content while user scrolls through the track */}
-            <div style={{
-                position: 'sticky',
-                top: 0,
-                height: '100vh',
-                width: '100%',
-                overflow: 'hidden',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
+            <div
+                className="hero-sticky"
+                style={{
+                    position: 'sticky',
+                    top: 0,
+                    height: '100vh',
+                    width: '100%',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
 
                 {/* Square Grid Pattern Layer */}
                 <div
@@ -114,7 +116,7 @@ export default function Hero() {
 
                 {/* Content Overlay */}
                 <div
-                    className="container"
+                    className="container hero-text-container"
                     style={{
                         position: 'relative',
                         zIndex: 10,
@@ -212,6 +214,7 @@ export default function Hero() {
 
                 {/* Background Image Container */}
                 <div
+                    className="hero-dashboard-bg"
                     style={{
                         position: 'absolute',
                         inset: `${insetVal}rem`, // 2rem -> 0rem
@@ -248,6 +251,25 @@ export default function Hero() {
                     />
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .hero-dashboard-bg {
+                        display: none !important;
+                    }
+                    .hero-track {
+                        height: 100vh !important;
+                    }
+                    .hero-sticky {
+                        position: relative !important;
+                        height: 100vh !important;
+                    }
+                    .hero-text-container {
+                        opacity: 1 !important;
+                        transform: none !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 }
