@@ -334,12 +334,13 @@ export default function Features() {
                         ref={(el) => { observerRefs.current[index] = el; }}
                         className={`
                             grid gap-4 md:gap-16 items-center scroll-mt-24
-                            grid-cols-1 ${index % 2 === 0 ? 'md:grid-cols-[minmax(0,_1fr)_minmax(0,_3fr)]' :
+                            grid-cols-1 min-w-0
+                            ${index % 2 === 0 ? 'md:grid-cols-[minmax(0,_1fr)_minmax(0,_3fr)]' :
                                 'md:grid-cols-[minmax(0,_3fr)_minmax(0,_1fr)]'}
                         `}
                     >
                         {/* Text Side - Always First on Mobile */}
-                        <div className={`relative ${index % 2 === 1 ? 'md:order-2' : 'md:order-1'}`}>
+                        <div className={`relative min-w-0 ${index % 2 === 1 ? 'md:order-2' : 'md:order-1'}`}>
                             <div
                                 className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full"
                                 style={{
@@ -364,8 +365,8 @@ export default function Features() {
                         {/* Visual Side - Free Floating Image */}
                         <div
                             className={`
-                                relative aspect-[4/3] flex items-center md:mt-8 mt-0
-                                ${index % 2 === 1 ? 'md:order-1 md:justify-end' : 'md:order-2 md:justify-start'}
+                                relative min-w-0 flex items-center md:mt-8 mt-0
+                                ${index % 2 === 1 ? 'md:order-1 md:justify-end md:pl-[10%]' : 'md:order-2 md:justify-start md:pr-[10%]'}
                             `}
                         >
                             {(feature as any).image ? (
@@ -374,9 +375,15 @@ export default function Features() {
                                     src={(feature as any).image}
                                     alt={feature.name}
                                     className={`
-                                        w-full md:w-[1280px] md:max-w-[1280px] h-auto object-contain 
+                                        w-full h-full 
+                                        lg:w-[768px]
+                                        lg:max-w-[768px]
+                                        xl:w-[900px]
+                                        xl:max-w-[900px]
+                                        2xl:w-[1280px]
+                                        2xl:max-w-[1280px]
+                                        object-contain 
                                         -rotate-2 drop-shadow-[0_30px_60px_rgba(0,0,0,0.18)] z-10
-                                        ${index % 2 === 0 ? 'md:pr-[10%]' : 'md:pl-[10%]'}
                                     `}
                                 />
                             ) : (
