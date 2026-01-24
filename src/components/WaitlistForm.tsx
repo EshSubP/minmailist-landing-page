@@ -18,7 +18,9 @@ export default function WaitlistForm() {
         setMessage('');
 
         try {
-            const response = await fetch('/api/waitlist', {
+            // API URL: set NEXT_PUBLIC_API_URL in .env.local for dev, or in Cloudflare Pages env vars
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://minmailist-landing-worker.eshwarp11.workers.dev';
+            const response = await fetch(`${apiUrl}/waitlist`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, source: 'landing_page' }),
