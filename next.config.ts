@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // SSR mode for API routes (removed output: "export")
 };
 
 export default nextConfig;

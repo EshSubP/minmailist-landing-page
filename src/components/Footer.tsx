@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import WaitlistForm from './WaitlistForm';
 
 
 export default function Footer() {
@@ -37,7 +38,9 @@ export default function Footer() {
                 {/* Waitlist CTA Section */}
                 <div
                     style={{
-                        textAlign: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
                         paddingBottom: '4rem',
                         marginBottom: '3rem',
                         borderBottom: '1px solid var(--color-border-light)',
@@ -52,17 +55,12 @@ export default function Footer() {
                             letterSpacing: '-0.02em',
                             color: 'var(--color-text-primary)',
                             marginBottom: '1.5rem',
+                            textAlign: 'center',
                         }}
                     >
                         Transform Gmail with Minmailist
                     </h2>
-                    <a
-                        href="#waitlist"
-                        className="btn btn-primary"
-                        style={{ padding: '1rem 2rem', fontSize: '1rem' }}
-                    >
-                        Join the Waitlist
-                    </a>
+                    <WaitlistForm />
                 </div>
 
                 {/* Main Footer Content */}
