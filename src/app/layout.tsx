@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import "./globals.css";
+import ScrollToHash from "@/components/ScrollToHash";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -29,6 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Suspense fallback={null}>
+          <ScrollToHash />
+        </Suspense>
         {children}
       </body>
     </html>
