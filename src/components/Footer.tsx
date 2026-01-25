@@ -7,10 +7,10 @@ import WaitlistForm from './WaitlistForm';
 export default function Footer() {
     const footerLinks = {
         Product: [
-            { label: 'Features', href: '#features' },
-            { label: 'Pricing', href: '#pricing' },
-            { label: 'Roadmap', href: '#' },
-            // { label: 'Changelog', href: '#' },
+            { label: 'Features', href: '/#features' },
+            { label: 'Pricing', href: '/#pricing' },
+            // { label: 'Roadmap', href: '#' },
+            { label: 'Changelog', href: '/changelog' },
         ],
         Company: [
             { label: 'About', href: '#' },
@@ -20,8 +20,8 @@ export default function Footer() {
         ],
         Legal: [
             { label: 'Privacy', href: '/privacy' },
-            { label: 'Terms', href: '#' },
-            { label: 'Security', href: '#' },
+            { label: 'Terms', href: '/terms' },
+            // { label: 'Security', href: '#' },
         ],
     };
 
