@@ -47,7 +47,7 @@ export default function ChangelogPage() {
                                         Planned
                                     </span>
                                     <span className="body-sm" style={{ color: 'var(--color-text-tertiary)' }}>
-                                        Scheduled for February 15, 2025
+                                        Scheduled for February 20, 2026
                                     </span>
                                 </div>
 
